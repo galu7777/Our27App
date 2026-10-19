@@ -1,97 +1,78 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Our27App 💜
 
-# Getting Started
+![Logo](./assets/logo.png)
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+Una app móvil hecha a mano, pixel art por pixel art, como regalo. Tres pantallas, una paleta pastel y un montón de detalles pensados uno por uno.
 
-## Step 1: Start Metro
+## ✨ Características
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+- **Bienvenida** — pantalla de entrada con gradiente pastel y animación de pixel art.
+- **Razones** — tarjeta rotativa con razones random, con sprite animado.
+- **Carta** — un sobre pixel art animado (abre con una secuencia de frames) que revela una carta escrita a mano, con música de fondo que solo suena en esta pantalla y se puede mutear.
+- Navegación por tabs inferiores con íconos animados.
+- Fuente pixel art personalizada en toda la app (estilo retro 8-bit).
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+## 🛠️ Stack
 
-```sh
-# Using npm
-npm start
+- [React Native CLI](https://reactnative.dev/) (sin Expo) + TypeScript
+- [`@react-navigation/native`](https://reactnavigation.org/) + `bottom-tabs`
+- [`react-native-linear-gradient`](https://github.com/react-native-linear-gradient/react-native-linear-gradient)
+- [`react-native-video`](https://github.com/TheWidlarzGroup/react-native-video) (reproducción de audio en loop)
+- Sprites y fuente pixel art dibujados a mano en Pixilart
 
-# OR using Yarn
-yarn start
+## 📋 Prerrequisitos
+
+- Node.js y npm
+- Android Studio con el SDK de Android instalado
+- Variable de entorno `ANDROID_HOME` configurada
+- Un emulador de Android o un dispositivo físico con depuración USB habilitada
+
+## 🚀 Instalación
+
+```bash
+npm install
 ```
-
-## Step 2: Build and run your app
-
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
 
 ### Android
 
-```sh
-# Using npm
+```bash
 npm run android
-
-# OR using Yarn
-yarn android
 ```
 
-### iOS
+> En Windows: si ves un error de "Filename longer than 260 characters" al compilar, mueve el proyecto a una ruta corta (ej. `C:\rn\Our27App`) antes de compilar — es una limitación conocida de `ninja`/CMake en rutas largas de Windows.
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+## 📁 Estructura del proyecto
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
-bundle install
+```
+Our27App/
+├── android/                  # Proyecto nativo de Android
+├── assets/
+│   ├── logo.png
+│   ├── fonts/                # Fuente pixel art
+│   └── music/                # Audio de fondo
+├── src/
+│   ├── assets/                # Sprites (home, heart, letter, etc.)
+│   ├── components/
+│   │   ├── AnimatedSprite.tsx     # Componente genérico para animar sprite sheets
+│   │   ├── AppText.tsx            # Texto con la fuente pixel art aplicada
+│   │   └── ...
+│   ├── data/
+│   │   └── letter.ts          # Texto de la carta
+│   └── screens/
+│       ├── WelcomeScreen.tsx
+│       ├── ReasonsScreen.tsx
+│       └── LetterScreen.tsx
+├── App.tsx                   # Navegador de tabs
+└── README.md
 ```
 
-Then, and every time you update your native dependencies, run:
+## 🎨 Sobre los sprites
 
-```sh
-bundle exec pod install
-```
+Todos los sprites son sheets horizontales (todas las frames en una sola fila, mismo ancho cada una), dibujados en Pixilart y animados con `AnimatedSprite`, un componente genérico que soporta:
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+- Escalar el tamaño mostrado sin perder nitidez (sprites pre-exportados a distintas resoluciones con nearest-neighbor, para evitar blur).
+- Una reproducción única de introducción (ej. abrir el sobre) seguida de un loop más corto.
 
-```sh
-# Using npm
-npm run ios
+## 📝 Licencia
 
-# OR using Yarn
-yarn ios
-```
-
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
-
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
-
-## Step 3: Modify your app
-
-Now that you have successfully run the app, let's make changes!
-
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
-
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
-
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+Proyecto personal — no destinado a distribución pública.
